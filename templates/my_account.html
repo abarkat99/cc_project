@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load gravatar %}
+
+{% block title %}My account{% endblock %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item active">My account</li>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12 d-flex justify-content-center">
+            <img src="{{ request.user|gravatar }}" alt="{{ request.user.username }}">
+        </div>
+        <div class="col-lg-6 col-md-8 col-sm-12 d-lg-block d-md-flex justify-content-md-center d-sm-flex justify-content-sm-center">
+            <form method="post" novalidate>
+                {% csrf_token %}
+                {% include 'includes/form.html' %}
+                <button type="submit" class="btn btn-success">Save changes</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
