@@ -13,7 +13,7 @@ from markdown import markdown
 
 class Board(models.Model):
     name = models.CharField(max_length=30, unique=True)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, blank=True)
     description = models.CharField(max_length=100)
 
     def save(self, *args, **kwargs):
