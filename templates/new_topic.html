@@ -2,6 +2,10 @@
 
 {% block title %}Start a New Topic{% endblock title %}
 
+{% block stylesheet %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+{% endblock %}
+
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{% url 'home' %}">Boards</a></li>
     <li class="breadcrumb-item"><a href="{{ board.get_absolute_url }}">{{ board.name }}</a></li>
@@ -15,3 +19,10 @@
         <button type="submit" class="btn btn-success">Post</button>
     </form>
 {% endblock content %}
+
+{% block javascript %}
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script>
+        var simplemde = new SimpleMDE();
+    </script>
+{% endblock %}
