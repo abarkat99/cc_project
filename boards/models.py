@@ -79,7 +79,7 @@ class Post(models.Model):
         return truncated_message.chars(30)
 
     def get_message_as_markdown(self):
-        return mark_safe(markdown(self.message))
+        return mark_safe(markdown(self.message, extensions=['fenced_code']))
 
     def get_edit_url(self):
         return reverse('edit_post', kwargs={'board_pk': self.topic.board.pk, 'slug': self.topic.board.slug,

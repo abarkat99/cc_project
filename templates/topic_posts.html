@@ -4,6 +4,11 @@
 
 {% block title %}{{ topic.subject }}{% endblock %}
 
+{% block stylesheet %}
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
+{% endblock %}
+
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{% url 'home' %}">Boards</a></li>
     <li class="breadcrumb-item"><a href="{{ topic.board.get_absolute_url }}">{{ topic.board.name }}</a></li>
@@ -17,7 +22,8 @@
     </div>
 
     {% for post in posts %}
-        <div id="{{ post.pk }}" class="card {% if forloop.last %}mb-4{% else %}mb-2{% endif %} {% if forloop.first %}border-dark{% endif %}">
+        <div id="{{ post.pk }}"
+             class="card {% if forloop.last %}mb-4{% else %}mb-2{% endif %} {% if forloop.first %}border-dark{% endif %}">
             {% if forloop.first %}
                 <div class="card-header text-white bg-dark py-2 px-3">{{ topic.subject }}</div>
             {% endif %}
@@ -48,4 +54,9 @@
         </div>
     {% endfor %}
     {% include 'includes/pagination.html' %}
+{% endblock %}
+
+{% block javascript %}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
 {% endblock %}
