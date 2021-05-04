@@ -5,7 +5,9 @@
 {% block title %}Post a reply{% endblock %}
 
 {% block stylesheet %}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/stackoverflow-light.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
 {% endblock %}
 
 {% block breadcrumb %}
@@ -34,7 +36,7 @@
                         <small class="text-muted">{{ post.created_at }}</small>
                     </div>
                 </div>
-                {{ post.message }}
+                {{ post.get_message_as_markdown }}
             </div>
         </div>
     {% endfor %}
@@ -42,8 +44,10 @@
 {% endblock %}
 
 {% block javascript %}
-    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
     <script>
-        var simplemde = new SimpleMDE();
+        var easymde = new EasyMDE({renderingConfig: {codeSyntaxHighlighting: true}});
     </script>
 {% endblock %}
